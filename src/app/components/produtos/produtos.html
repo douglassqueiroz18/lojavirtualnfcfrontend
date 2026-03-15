@@ -1,0 +1,41 @@
+<div class="max-w-md mx-auto p-4 pb-32">
+  <div class="grid grid-cols-1 gap-3">
+    @for (item of produtos(); track item.id) {
+      <div class="product-card" [class.has-items]="item.quantidade > 0">
+        <div class="image-area">
+          <img [src]="item.imagemUrl" [alt]="item.nome" />
+        </div>
+        <div class="info-area">
+          <p class="title">{{ item.nome }}</p>
+          <p class="price">{{ item.preco | currency: 'BRL' }}</p>
+        </div>
+        <div class="controls">
+          @if (item.quantidade > 0) {
+            <button mat-mini-fab color="warn" (click)="remover(item)">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <span class="qty">{{ item.quantidade }}</span>
+          }
+          <button mat-mini-fab color="primary" (click)="adicionar(item)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+@if (totalItens() > 0) {
+  <div class="floating-cart shadow-2xl">
+    <div class="cart-content">
+      <div class="cart-info">
+        <span class="cart-qty">{{ totalItens() }} itens</span>
+        <span class="cart-total">{{ valorTotal() | currency: 'BRL' }}</span>
+      </div>
+      <button mat-flat-button color="accent" class="btn-checkout" (click)="abrirCarrinho()">
+        VER CARRINHO
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </div>
+}

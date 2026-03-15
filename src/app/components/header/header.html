@@ -1,0 +1,25 @@
+<mat-toolbar color="primary" class="header-horizontal">
+  <div class="container-header">
+    <div class="logo-section">
+      <mat-icon>bolt</mat-icon>
+      <span>VirtualNFC</span>
+    </div>
+
+    <div class="actions-section">
+      <button mat-icon-button>
+        <mat-icon>notifications</mat-icon>
+      </button>
+
+      <button mat-icon-button
+              [matBadge]="quantidade()"
+              matBadgeColor="warn"
+              [matBadgeHidden]="quantidade() === 0">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+
+      <button mat-icon-button>
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>

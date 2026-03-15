@@ -1,0 +1,47 @@
+<div class="carrinho-container">
+  <div class="header-modal">
+    <div>
+      <h2 class="title">Meu Pedido</h2>
+      <p class="subtitle">{{ quantidadeItens() }} itens selecionados</p>
+    </div>
+    <button mat-icon-button (click)="fechar()" class="close-button">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+<div class="items-list custom-scroll">
+  @for (item of itensNoCarrinho(); track item.id) {
+    <div class="item-row">
+      <div class="item-info">
+        <button mat-icon-button class="small-btn" (click)="removerItem(item)">
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+
+        <span class="item-qty">{{ item.quantidade }}x</span>
+        <span class="item-name">{{ item.nome }}</span>
+      </div>
+
+      <span class="item-price">
+        {{ (item.preco * item.quantidade) | currency:'BRL' }}
+      </span>
+    </div>
+  } @empty {
+    <div class="empty-state">
+      <mat-icon>shopping_cart</mat-icon>
+      <p>Seu carrinho está vazio</p>
+    </div>
+  }
+</div>
+
+  <div class="footer-modal">
+    <div class="total-row">
+      <span>Total do pedido</span>
+      <span class="total-value">{{ totalNoModal() | currency:'BRL' }}</span>
+    </div>
+
+    <button mat-flat-button class="checkout-button" (click)="finalizar()">
+      <span>CONFIRMAR PEDIDO</span>
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</div>

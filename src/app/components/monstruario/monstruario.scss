@@ -1,0 +1,10 @@
+.container-master {
+  display: block;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding-top: 20px;
+}
+:host {
+  display: flex;
+  flex-direction: column;
+}
