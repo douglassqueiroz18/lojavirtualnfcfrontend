@@ -39,7 +39,7 @@
       <span class="total-value">{{ totalNoModal() | currency:'BRL' }}</span>
     </div>
 
-    <button mat-flat-button class="checkout-button" (click)="finalizar()">
+    <button mat-flat-button class="checkout-button" (click)="finalizar()" [disabled]="quantidadeItens() === 0">
       <span>CONFIRMAR PEDIDO</span>
       <mat-icon>chevron_right</mat-icon>
     </button>
