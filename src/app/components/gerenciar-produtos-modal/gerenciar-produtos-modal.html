@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>{{ data?.id ? 'Editar Produto' : 'Novo Produto' }}</h2>
+
+<mat-dialog-content class="mat-typography">
+  <div class="form-container">
+
+    <div class="image-upload-wrapper">
+      <div class="preview-box"
+           (click)="fileInput.click()"
+           [class.has-image]="produto.imagemUrl">
+
+        @if (produto.imagemUrl) {
+          <img [src]="produto.imagemUrl" alt="Preview do Produto">
+          <div class="hover-overlay">
+            <mat-icon>cached</mat-icon>
+            <span>Trocar Imagem</span>
+          </div>
+        } @else {
+          <div class="empty-state">
+            <mat-icon>cloud_upload</mat-icon>
+            <span>Arraste ou clique para upload</span>
+            <span class="sub-text">PNG, JPG (Máx. 5MB)</span>
+          </div>
+        }
+      </div>
+      <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" hidden>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nome do Produto</mat-label>
+      <input matInput [(ngModel)]="produto.nome" placeholder="Ex: Smartphone" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Preço</mat-label>
+      <input matInput type="number" [(ngModel)]="produto.preco" placeholder="0.00" required>
+      <span matTextPrefix>R$&nbsp;</span>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="salvar()" [disabled]="!produto.nome || !produto.preco">
+    {{ data?.id ? 'Atualizar' : 'Salvar' }}
+  </button>
+</mat-dialog-actions>

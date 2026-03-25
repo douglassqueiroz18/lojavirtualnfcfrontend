@@ -9,5 +9,9 @@ export const routes: Routes = [
   {
     path: 'monstruario',
     loadComponent: () => import('./components/monstruario/monstruario').then(m=>m.Monstruario)
+  },
+  {
+    path: 'gerenciar-produtos',
+    loadComponent: () => import('./components/gerenciar-produtos/gerenciar-produtos').then(m=>m.GerenciarProdutos)
   }
 ];

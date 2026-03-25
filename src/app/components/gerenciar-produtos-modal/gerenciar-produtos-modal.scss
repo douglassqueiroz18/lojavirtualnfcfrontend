@@ -1,0 +1,133 @@
+// Cores da Paleta (ajuste conforme seu tema)
+$primary-color: #3f51b5; // Cor primária do Angular Material
+$border-color: #e0e0e0;
+$bg-empty: #fbfbfb;
+$text-sub: #888;
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 320px;
+  padding-top: 15px; // Espaço extra no topo do formulário
+}
+
+// Estilização do Upload de Imagem
+.image-upload-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+
+  .preview-box {
+    position: relative; // Necessário para o overlay
+    width: 160px;
+    height: 160px;
+    border: 2px dashed $border-color;
+    border-radius: 16px; // Bordas mais arredondadas
+    background-color: $bg-empty;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out; // Animação suave para todas as mudanças
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // Hover effect: muda a borda e o fundo
+    &:hover {
+      border-color: $primary-color;
+      background-color: lighten($primary-color, 48%);
+    }
+
+    // Estilo quando já possui imagem
+    &.has-image {
+      border-style: solid; // Muda de tracejado para sólido
+      border-color: $border-color;
+    }
+
+    // Estilo da imagem interna
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // Preenche mantendo a proporção
+      transition: transform 0.3s ease; // Animação de zoom suave
+    }
+
+    // Zoom suave na imagem no hover
+    &:hover &.has-image img {
+      transform: scale(1.05);
+    }
+
+    // Elementos do estado vazio
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
+      color: #666;
+
+      mat-icon {
+        font-size: 36px;
+        height: 36px;
+        width: 36px;
+        margin-bottom: 8px;
+        color: #888;
+      }
+
+      span {
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .sub-text {
+        font-size: 11px;
+        color: $text-sub;
+        margin-top: 4px;
+      }
+    }
+
+    // Overlay de hover (aparece quando já tem imagem)
+    .hover-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6); // Fundo escuro semitransparente
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      opacity: 0; // Começa invisível
+      transition: opacity 0.3s ease; // Animação de aparecimento suave
+
+      mat-icon {
+        font-size: 28px;
+        height: 28px;
+        width: 28px;
+        margin-bottom: 6px;
+      }
+
+      span {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    }
+
+    // Mostra o overlay no hover
+    &.has-image:hover .hover-overlay {
+      opacity: 1;
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+// Pequeno ajuste para as ações
+mat-dialog-actions {
+  padding-bottom: 12px !important;
+}
