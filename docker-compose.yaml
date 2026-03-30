@@ -1,0 +1,15 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-frontend-loja
+    volumes:
+      - ./dist:/app/dist
+    command: ["npm", "run", "build"]
+    networks:
+      - app-network-loja
+
+networks:
+  app-network-loja:
+    external: true
